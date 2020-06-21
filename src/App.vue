@@ -1,28 +1,64 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <tabs ref="tabs" @indexChanged="indexChangedHandler">
+      <tab name="Корпоративные ценности" :selected="true">
+        <h1>Корпоративные ценности</h1>
+      </tab>
+      <tab name="Корпоративные компетенции">
+        <h1>Корпоративные компетенции</h1>
+      </tab>
+      <tab name="Профессиональные навыки">
+        <h1>Профессиональные навыки</h1>
+      </tab>
+      <tab name="Предварительное решение об итоговой оценке">
+        <h1>Предварительное решение об итоговой оценке</h1>
+      </tab>
+      <tab name="Завершение оценки">
+        <h1>Завершение оценки</h1>
+      </tab>
+    </tabs>
+    <button v-if="prevIsVisible" @click="prev()">Prev</button>
+    <button @click="next()">Next</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Tabs from './components/Tabs.vue'
+import Tab from "./components/Tab";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Tabs,
+    Tab
+  },
+  data(){
+    return {
+      selectedIndex: 0,
+    }
+  },
+  computed: {
+    prevIsVisible(){
+      return !!this.selectedIndex
+    }
+  },
+  methods: {
+    prev(){
+      this.$refs.tabs.prev()
+    },
+    next(){
+      this.$refs.tabs.next()
+    },
+    indexChangedHandler(index){
+      this.selectedIndex = index
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  ul{
+    display: flex;
+    justify-content: space-around;
+  }
 </style>
