@@ -5,8 +5,7 @@
                 <h1>Корпоративные ценности</h1>
                 <div>
                     <p>Оцените, соответсвует ли поведение сотрудника орпторативным ценностям Х5</p>
-                    <div>
-                        <h2>1. Честность и порядочность</h2>
+                    <card title="1. Честность и порядочность">
                         <item
                                 title="Соблюдает договоренности"
                                 :values="values"
@@ -20,7 +19,7 @@
                                 title="Абсолютно нетерпим к коррупции"
                                 v-model="selectedData.third"
                                 :values="values"/>
-                    </div>
+                    </card>
                 </div>
             </tab>
             <tab name="Корпоративные компетенции">
@@ -46,10 +45,12 @@
     import Tabs from './components/Tabs.vue'
     import Tab from "./components/Tab";
     import Item from "./components/item";
+    import Card from "./components/card";
 
     export default {
         name: 'App',
         components: {
+          Card,
             Item,
             Tabs,
             Tab
